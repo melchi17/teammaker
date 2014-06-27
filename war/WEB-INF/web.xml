@@ -41,11 +41,11 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
 	<servlet-mapping>
 		<servlet-name>User</servlet-name>
-		<url-pattern>/account</url-pattern>
+		<url-pattern>/api/user/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>UserTeam</servlet-name>
-		<url-pattern>/teams</url-pattern>
+		<url-pattern>/api/teams/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>Team</servlet-name>

@@ -42,7 +42,7 @@ teamApp.controller('Form', function ($scope, $http) {
 	};
 	$scope.success = function(data) {
 		$scope.$parent.showResults = true;
-		$scope.$parent.yourPermalink = location.origin+'/team/'+data.propertyMap.key.id;
+		$scope.$parent.yourPermalink = location.origin+'/team/'+data.key.id;
 
 		$scope.$parent.teamName = data.propertyMap.name;
 		$scope.$parent.pf = data.propertyMap.pf;
@@ -71,6 +71,26 @@ teamApp.controller('Form', function ($scope, $http) {
 });
 
 teamApp.controller('init', function ($scope, $http) {
+	$scope.login = function() {
+		$http({
+			method: 'GET',
+			url: 'api/user'
+		}).success(function (data, status, headers, config) {
+			$scope.userName = data.email;
+		})
+	};
+	
+	$scope.my_teams = function() {
+		$http({
+			method: 'GET',
+			url: 'api/teams'
+		}).success(function (data, status, headers, config) {
+			$scope.showMyTeams = true;
+			$scope.showResults = false;
+			$scope.teams = data;
+		}) 
+	};
+	
 	var teamID = location.search.indexOf('id=') > -1 ? location.search.replace('?id=', '') : false;
 
 	if( teamID ){

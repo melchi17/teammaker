@@ -1,6 +1,8 @@
 package com.team.maker.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,8 +33,12 @@ public class UserTeamServlet extends HttpServlet {
 			Query q = new Query("Team").setFilter(new FilterPredicate("owner", FilterOperator.EQUAL, user.getEmail()));
 			PreparedQuery pq = datastore.prepare(q);
 			resp.setContentType("application/json");
+			List <Entity> results = new ArrayList<Entity>();
 			for (Entity team : pq.asIterable()) {
-				resp.getWriter().println(gson.toJson(team));
+				results.add(team);
+			}
+			if (results.size() > 0) {
+				resp.getWriter().println(gson.toJson(results));
 			}
 		} else {
 			resp.sendError(400);

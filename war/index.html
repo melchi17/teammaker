@@ -28,8 +28,9 @@
 
 	<nav>
 		<a class="active" href="/">Home</a>
-		<a href="account">Account</a>
-		<a href="teams">My Teams</a>
+		<a href="" ng-click="login()" ng-hide="userName">Account</a>
+		<span ng-show="userName" style="color:white">Hi, {{userName}}!</span><a href="" ng-click="logout()" ng-show="userName">(Logout)</a>
+		<a href="" ng-click="my_teams()">My Teams</a>
 	</nav>
 
 	<div id="container">
@@ -38,7 +39,7 @@
 			<h1 class="logo"><a href="/">TeamMaker</a></h1>
 		</header>
 
-		<div id="form-container" ng-hide="showResults==true">
+		<div id="form-container" ng-hide="showResults==true || showMyTeams==true">
 
 			<div id="sports-form">
 				<div class="form-field">
@@ -226,6 +227,20 @@
 				</div>
 			</form>
 
+		</div>
+
+ 		<div id="my-teams" class="panel panel-default" ng-show="showMyTeams==true">
+			<div class="panel-heading team-name">My Teams</div>
+			<div class="panel-body">
+				<table class="table table-striped">
+					<tbody>
+						<tr ng-repeat="team in teams">
+							<td>{{team.propertyMap.name}}</td>
+							<td><button class="delete-btn">Delete</button><td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 
 		<div id="team-results" ng-show="showResults==true">
