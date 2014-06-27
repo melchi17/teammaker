@@ -14,24 +14,17 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
-<<<<<<< HEAD
+import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-=======
-import com.google.appengine.api.datastore.Transaction;
->>>>>>> eddff1672fb6d75253f31bfe645d52ce2d7fdc67
 import com.google.gson.Gson;
 import com.team.maker.model.NBATeam;
 
 @SuppressWarnings("serial")
 public class TeamServlet extends HttpServlet
 {
-<<<<<<< HEAD
-	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-	UserService userService = UserServiceFactory.getUserService();
-=======
+	private UserService userService = UserServiceFactory.getUserService();
 	private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
->>>>>>> eddff1672fb6d75253f31bfe645d52ce2d7fdc67
 	private Gson gson = new Gson();
 	
 	/**
@@ -48,7 +41,7 @@ public class TeamServlet extends HttpServlet
 		teamEntity.setProperty("pf", team.getPf());
 		teamEntity.setProperty("c", team.getC());
 		teamEntity.setProperty("hc", team.getHc());
-		if (req.getUserPrincipal().getName() != null) {
+		if (request.getUserPrincipal().getName() != null) {
 			teamEntity.setProperty("owner", userService.getCurrentUser().getEmail());
 		}
 		
