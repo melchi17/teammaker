@@ -27,14 +27,15 @@
 	<!-- Add your site or application content here -->
 
 	<nav>
-		<a class="active" href="account">Account</a>
+		<a class="active" href="/">Home</a>
+		<a href="account">Account</a>
 		<a href="teams">My Teams</a>
 	</nav>
 
 	<div id="container">
 
 		<header>
-			<h1 class="logo">TeamMaker</h1>
+			<h1 class="logo"><a href="/">TeamMaker</a></h1>
 		</header>
 
 		<div id="form-container" ng-hide="showResults==true">
@@ -61,7 +62,9 @@
 					</div>
 					<div class="form-field">
 						<label for="hc">Head coach</label>
-						<input required type="text" name="hc" class="player" ng-model="formData.hc" />
+						<input required type="text" name="hc" autocomplete="off" class="player" ng-model="formData.hc"
+								typeahead="coach for coach in coaches | filter:$viewValue | limitTo:8" 
+								typeahead-template-url="coachTypeahead.html"/>
 					</div>
 
 					<!-- BASKETBALL -->
@@ -69,31 +72,31 @@
 						<input type="hidden" name="sport" value="basketball" ng-model="formData.sport" />
 						<div class="form-field">
 							<label for="pg">Point guard</label>
-							<input required type="text" name="pg" class="player" ng-model="formData.pg"
+							<input required type="text" name="pg" autocomplete="off" class="player" ng-model="formData.pg"
 								typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
 								typeahead-template-url="playerTypeahead.html"/>
 						</div>
 						<div class="form-field">
 							<label for="sg">Shooting guard</label>
-							<input required type="text" name="sg" class="player" ng-model="formData.sg" 
+							<input required type="text" name="sg" autocomplete="off" class="player" ng-model="formData.sg" 
 								typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
 								typeahead-template-url="playerTypeahead.html"/>
 						</div>
 						<div class="form-field">
 							<label for="sf">Small forward</label>
-							<input required type="text" name="sf" class="player" ng-model="formData.sf" 
+							<input required type="text" name="sf" autocomplete="off" class="player" ng-model="formData.sf" 
 								typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
 								typeahead-template-url="playerTypeahead.html"/>
 						</div>
 						<div class="form-field">
 							<label for="pf">Power forward</label>
-							<input required type="text" name="pf" class="player" ng-model="formData.pf" 
+							<input required type="text" name="pf" autocomplete="off" class="player" ng-model="formData.pf" 
 								typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
 								typeahead-template-url="playerTypeahead.html"/>
 						</div>
 						<div class="form-field">
 							<label for="c">Center</label>
-							<input required type="text" name="c" class="player" ng-model="formData.c" 
+							<input required type="text" name="c" autocomplete="off" class="player" ng-model="formData.c" 
 								typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
 								typeahead-template-url="playerTypeahead.html"/>
 						</div>
@@ -228,13 +231,32 @@
 		<div id="team-results" ng-show="showResults==true">
 
 			<div class="team">
-			<h2>{{teamName}}</h2>
-				<p>Head coach: {{hc}}</p>
-				<p>Point guard: {{pg}}</p>
-				<p>Shooting guard: {{sg}}</p>
-				<p>Small forward: {{sf}}</p>
-				<p>Power forward: {{pf}}</p>
-				<p>Center: {{c}}</p>
+				<h2>{{teamName}}</h2>
+
+				<div class="player">
+					<h4 class="title">Head coach </h4>
+					<p class="name">{{hc}}</p>
+				</div>
+				<div class="player">
+					<h4 class="title">Point guard </h4>
+					<p class="name">{{pg}}</p>
+				</div>
+				<div class="player">
+					<h4 class="title">Shooting guard </h4>
+					<p class="name">{{sg}}</p>
+				</div>
+				<div class="player">
+					<h4 class="title">Small forward </h4>
+					<p class="name">{{sf}}</p>
+				</div>
+				<div class="player">
+					<h4 class="title">Power forward </h4>
+					<p class="name">{{pf}}</p>
+				</div>
+				<div class="player">
+					<h4 class="title">Center </h4>
+					<p class="name">{{c}}</p>
+				</div>
 			</div>
 
 			<div id="team-link">
@@ -255,6 +277,9 @@
 <script src="js/scripts.js"></script>
 <script type="text/ng-template" id="playerTypeahead.html">
 <a><span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>, {{ match.model.position }} ({{ match.model.from }} - {{ match.model.to }})</a>
+</script>
+<script type="text/ng-template" id="coachTypeahead.html">
+<a><span bind-html-unsafe="match.label | typeaheadHighlight:query"></span></a>
 </script>
 
 </body>

@@ -41,7 +41,8 @@ public class TeamServlet extends HttpServlet
 		teamEntity.setProperty("pf", team.getPf());
 		teamEntity.setProperty("c", team.getC());
 		teamEntity.setProperty("hc", team.getHc());
-		if (request.getUserPrincipal().getName() != null) {
+		
+		if (request.getUserPrincipal() != null && request.getUserPrincipal().getName() != null) {
 			teamEntity.setProperty("owner", userService.getCurrentUser().getEmail());
 		}
 		
