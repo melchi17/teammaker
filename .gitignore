@@ -1,0 +1,5 @@
+target/
+build/
+datanucleus.log
+.DS_Store
+/war/WEB-INF/classes

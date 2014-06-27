@@ -2,6 +2,7 @@ package com.team.maker.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,20 +14,21 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.Transaction;
 import com.google.gson.Gson;
 import com.team.maker.model.NBATeam;
 
 @SuppressWarnings("serial")
 public class TeamServlet extends HttpServlet
 {
-	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+	private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 	private Gson gson = new Gson();
 	
 	/**
 	 * Creates a team
 	 */
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		NBATeam team = gson.fromJson(IoUtil.readStream(req.getInputStream()), NBATeam.class);
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		NBATeam team = gson.fromJson(IoUtil.readStream(request.getInputStream()), NBATeam.class);
 		
 		Entity teamEntity = new Entity("Team");
 		teamEntity.setProperty("name", team.getName());
@@ -37,10 +39,18 @@ public class TeamServlet extends HttpServlet
 		teamEntity.setProperty("c", team.getC());
 		teamEntity.setProperty("hc", team.getHc());
 		
-		datastore.put(teamEntity);
+		Transaction tx = datastore.beginTransaction();
+		try {
+			datastore.put(teamEntity);
+			tx.commit();
+		}
+		catch (Exception ex) {
+			tx.rollback();
+			throw new ServletException(ex);
+		}
 		
-		resp.setContentType("application/json");
-		resp.getWriter().println(gson.toJson(teamEntity));
+		response.setContentType("application/json");
+		response.getWriter().println(gson.toJson(teamEntity));
 	}
 	
 	/**
