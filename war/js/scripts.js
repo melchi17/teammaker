@@ -10,27 +10,31 @@ teamApp.controller('Form', function ($scope, $http) {
 			$scope.success(data);
 		}).error(function( data, status, headers, config ){
 			var data = {
-				"key": {
-					"kind": "Team",
-					"appId": "team-maker-ship-it",
-					"id": 5629499534213120,
-					"name": null,
+				"propertyMap": {
+					"key": {
+						"kind": "Team",
+						"appId": "team-maker-ship-it",
+						"id": 5629499534213120,
+						"name": null,
+						"parent": null,
+						"namespace": "",
+						"complete": true
+					},
 					"parent": null,
-					"namespace": "",
-					"complete": true
-				},
-				"parent": null,
-				"kind": "Team",
-				"appId": "team-maker-ship-it",
-				"namespace": "",
-				"properties": {
-					"title": "Ben's Team",
+					"name": "Ben's Team",
 					"pf": "Ben Weisel",
 					"pg": "Josh Thompson",
 					"c": "Kevin Deenanauth",
 					"sf": "Brian Cody",
 					"hc": "Gregg Popovich",
-					"sg": "Paul Burgess"
+					"sg": "Paul Burgess",
+					"kind": "Team",
+					"appId": "team-maker-ship-it",
+					"namespace": "",
+					"properties": {
+						"title": "Ben's Team",
+
+					}
 				}
 			}
 			$scope.success(data);
@@ -38,15 +42,21 @@ teamApp.controller('Form', function ($scope, $http) {
 	};
 	$scope.success = function(data) {
 		$scope.$parent.showResults = true;
-		$scope.$parent.yourPermalink = location.origin+'/team/'+data.key.id;
+		$scope.$parent.yourPermalink = location.origin+'/team/'+data.propertyMap.key.id;
 
 		$scope.$parent.teamName = data.propertyMap.name;
 		$scope.$parent.pf = data.propertyMap.pf;
+		$scope.$parent.pfImage = 'images/player-basketball.jpg';
 		$scope.$parent.pg = data.propertyMap.pg;
+		$scope.$parent.pgImage = data.propertyMap.pg.img ? data.propertyMap.pg.img : 'images/player-basketball.jpg';
 		$scope.$parent.c = data.propertyMap.c;
+		$scope.$parent.cImage = data.propertyMap.c.img ? data.propertyMap.c.img : 'images/player-basketball.jpg';
 		$scope.$parent.sf = data.propertyMap.sf;
+		$scope.$parent.sfImage = data.propertyMap.sf.img ? data.propertyMap.sf.img : 'images/player-basketball.jpg';
 		$scope.$parent.hc = data.propertyMap.hc;
+		$scope.$parent.hcImage = data.propertyMap.hc.img ? data.propertyMap.hc.img : 'images/player-basketball.jpg';
 		$scope.$parent.sg = data.propertyMap.sg;
+		$scope.$parent.sgImage = data.propertyMap.sg.img ? data.propertyMap.sg.img : 'images/player-basketball.jpg';
 	};
 	
 	$scope.players = [];
@@ -70,50 +80,71 @@ teamApp.controller('init', function ($scope, $http) {
 			url:'/api/team/'+teamID 
 		}).success(function( data, status, headers, config ){
 			$scope.showResults = true;
-			$scope.yourPermalink = location.origin+'/team/'+data.key.id;
+			$scope.yourPermalink = location.origin+'/team/'+data.propertyMap.key.id;
 			
 			$scope.teamName = data.propertyMap.name;
 			$scope.pf = data.propertyMap.pf;
+			$scope.pfImage = 'images/player-basketball.jpg';
 			$scope.pg = data.propertyMap.pg;
+			$scope.pgImage = data.propertyMap.pg.img ? data.propertyMap.pg.img : 'images/player-basketball.jpg';
 			$scope.c = data.propertyMap.c;
+			$scope.cImage = data.propertyMap.c.img ? data.propertyMap.c.img : 'images/player-basketball.jpg';
 			$scope.sf = data.propertyMap.sf;
+			$scope.sfImage = data.propertyMap.sf.img ? data.propertyMap.sf.img : 'images/player-basketball.jpg';
 			$scope.hc = data.propertyMap.hc;
+			$scope.hcImage = data.propertyMap.hc.img ? data.propertyMap.hc.img : 'images/player-basketball.jpg';
 			$scope.sg = data.propertyMap.sg;
+			$scope.sgImage = data.propertyMap.sg.img ? data.propertyMap.sg.img : 'images/player-basketball.jpg';
 		}).error(function( data, status, headers, config ){
 			var data = {
-				"key": {
+				"propertyMap": {
+					"key": {
+						"kind": "Team",
+						"appId": "team-maker-ship-it",
+						"id": 5629499534213120,
+						"name": null,
+						"parent": null,
+						"namespace": "",
+						"complete": true
+					},
+					"parent": null,
 					"kind": "Team",
 					"appId": "team-maker-ship-it",
-					"id": 5629499534213120,
-					"name": null,
-					"parent": null,
-					"namespace": "",
-					"complete": true
-				},
-				"parent": null,
-				"kind": "Team",
-				"appId": "team-maker-ship-it",
-				"namespace": "",
-				"properties": {
-					"title": "Ben's Team",
+					"name": "Ben's Team",
 					"pf": "Ben Weisel",
 					"pg": "Josh Thompson",
 					"c": "Kevin Deenanauth",
 					"sf": "Brian Cody",
 					"hc": "Gregg Popovich",
-					"sg": "Paul Burgess"
+					"sg": "Paul Burgess",
+					"namespace": "",
+					"properties": {
+						"title": "Ben's Team",
+						"pf": "Ben Weisel",
+						"pg": "Josh Thompson",
+						"c": "Kevin Deenanauth",
+						"sf": "Brian Cody",
+						"hc": "Gregg Popovich",
+						"sg": "Paul Burgess"
+					}
 				}
 			}
 			$scope.showResults = true;
-			$scope.yourPermalink = location.origin+'/team/'+data.key.id;
+			$scope.yourPermalink = location.origin+'/team/'+data.propertyMap.key.id;
 
 			$scope.teamName = data.propertyMap.name;
 			$scope.pf = data.propertyMap.pf;
+			$scope.pfImage = 'images/player-basketball.jpg';
 			$scope.pg = data.propertyMap.pg;
+			$scope.pgImage = data.propertyMap.pg.img ? data.propertyMap.pg.img : 'images/player-basketball.jpg';
 			$scope.c = data.propertyMap.c;
+			$scope.cImage = data.propertyMap.c.img ? data.propertyMap.c.img : 'images/player-basketball.jpg';
 			$scope.sf = data.propertyMap.sf;
+			$scope.sfImage = data.propertyMap.sf.img ? data.propertyMap.sf.img : 'images/player-basketball.jpg';
 			$scope.hc = data.propertyMap.hc;
+			$scope.hcImage = data.propertyMap.hc.img ? data.propertyMap.hc.img : 'images/player-basketball.jpg';
 			$scope.sg = data.propertyMap.sg;
+			$scope.sgImage = data.propertyMap.sg.img ? data.propertyMap.sg.img : 'images/player-basketball.jpg';
 		})
-	}
+}
 });

@@ -63,8 +63,8 @@
 					<div class="form-field">
 						<label for="hc">Head coach</label>
 						<input required type="text" name="hc" autocomplete="off" class="player" ng-model="formData.hc"
-								typeahead="coach for coach in coaches | filter:$viewValue | limitTo:8" 
-								typeahead-template-url="coachTypeahead.html"/>
+						typeahead="coach for coach in coaches | filter:$viewValue | limitTo:8" 
+						typeahead-template-url="coachTypeahead.html"/>
 					</div>
 
 					<!-- BASKETBALL -->
@@ -73,32 +73,32 @@
 						<div class="form-field">
 							<label for="pg">Point guard</label>
 							<input required type="text" name="pg" autocomplete="off" class="player" ng-model="formData.pg"
-								typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
-								typeahead-template-url="playerTypeahead.html"/>
+							typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
+							typeahead-template-url="playerTypeahead.html"/>
 						</div>
 						<div class="form-field">
 							<label for="sg">Shooting guard</label>
 							<input required type="text" name="sg" autocomplete="off" class="player" ng-model="formData.sg" 
-								typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
-								typeahead-template-url="playerTypeahead.html"/>
+							typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
+							typeahead-template-url="playerTypeahead.html"/>
 						</div>
 						<div class="form-field">
 							<label for="sf">Small forward</label>
 							<input required type="text" name="sf" autocomplete="off" class="player" ng-model="formData.sf" 
-								typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
-								typeahead-template-url="playerTypeahead.html"/>
+							typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
+							typeahead-template-url="playerTypeahead.html"/>
 						</div>
 						<div class="form-field">
 							<label for="pf">Power forward</label>
 							<input required type="text" name="pf" autocomplete="off" class="player" ng-model="formData.pf" 
-								typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
-								typeahead-template-url="playerTypeahead.html"/>
+							typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
+							typeahead-template-url="playerTypeahead.html"/>
 						</div>
 						<div class="form-field">
 							<label for="c">Center</label>
 							<input required type="text" name="c" autocomplete="off" class="player" ng-model="formData.c" 
-								typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
-								typeahead-template-url="playerTypeahead.html"/>
+							typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
+							typeahead-template-url="playerTypeahead.html"/>
 						</div>
 					</div>
 
@@ -234,28 +234,46 @@
 				<h2>{{teamName}}</h2>
 
 				<div class="player">
-					<h4 class="title">Head coach </h4>
-					<p class="name">{{hc}}</p>
+					<img src="{{hcImage}}" alt="{{hc}}">
+					<div class="player-info">
+						<h4 class="title">Head coach </h4>
+						<p class="name">{{hc}}</p>
+					</div>
 				</div>
 				<div class="player">
-					<h4 class="title">Point guard </h4>
-					<p class="name">{{pg}}</p>
+					<img src="{{pgImage}}" alt="{{pg}}">
+					<div class="player-info">
+						<h4 class="title">Point guard </h4>
+						<p class="name">{{pg}}</p>
+					</div>
 				</div>
 				<div class="player">
-					<h4 class="title">Shooting guard </h4>
-					<p class="name">{{sg}}</p>
+					<img src="{{sgImage}}" alt="{{sg}}">
+					<div class="player-info">
+						<h4 class="title">Shooting guard </h4>
+						<p class="name">{{sg}}</p>
+					</div>
 				</div>
 				<div class="player">
-					<h4 class="title">Small forward </h4>
-					<p class="name">{{sf}}</p>
+					<img src="{{sfImage}}" alt="{{sf}}">
+					<div class="player-info">
+						<h4 class="title">Small forward </h4>
+						<p class="name">{{sf}}</p>
+					</div>
 				</div>
 				<div class="player">
-					<h4 class="title">Power forward </h4>
-					<p class="name">{{pf}}</p>
+					<img src="{{pfImage}}" alt="{{pf}}">
+					<div class="player-info">
+						<h4 class="title">Power forward </h4>
+						<p class="name">{{pf}}</p>
+					</div>
 				</div>
 				<div class="player">
-					<h4 class="title">Center </h4>
-					<p class="name">{{c}}</p>
+					<img src="{{cImage}}" alt="{{c}}">
+					<div class="player-info">
+						<h4 class="title">Center </h4>
+						<p class="name">{{c}}</p>
+					</div>
 				</div>
 			</div>
 
@@ -266,21 +284,21 @@
 
 		</div>
 
-</div>
+	</div>
 
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="js/less-1.7.3.min.js" type="text/javascript"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js"></script>
-<script src="js/scripts.js"></script>
-<script type="text/ng-template" id="playerTypeahead.html">
-<a><span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>, {{ match.model.position }} ({{ match.model.from }} - {{ match.model.to }})</a>
-</script>
-<script type="text/ng-template" id="coachTypeahead.html">
-<a><span bind-html-unsafe="match.label | typeaheadHighlight:query"></span></a>
-</script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="js/less-1.7.3.min.js" type="text/javascript"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js"></script>
+	<script src="js/scripts.js"></script>
+	<script type="text/ng-template" id="playerTypeahead.html">
+	<a><span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>, {{ match.model.position }} ({{ match.model.from }} - {{ match.model.to }})</a>
+	</script>
+	<script type="text/ng-template" id="coachTypeahead.html">
+	<a><span bind-html-unsafe="match.label | typeaheadHighlight:query"></span></a>
+	</script>
 
 </body>
 </html>
