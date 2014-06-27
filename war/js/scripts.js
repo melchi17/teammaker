@@ -53,6 +53,11 @@ teamApp.controller('Form', function ($scope, $http) {
 	$http.get('js/players.json', {}).then(function (res) {
 		$scope.players = res.data.players;
 	});
+	
+	$scope.coaches = [];
+	$http.get('js/coaches.json', {}).then(function (res) {
+		$scope.coaches = res.data.coaches;
+	});
 });
 
 teamApp.controller('init', function ($scope, $http) {
