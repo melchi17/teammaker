@@ -1,0 +1,151 @@
+@color-main: #333;
+@color-light: #eee;
+@color-accent: hsl(14, 100%, 50%);
+
+html, body{
+	min-height: 100%;
+}
+
+body{
+	background: url(../images/stock/basketball.jpg) center center no-repeat fixed #333333;
+	background-size: cover;
+	font: normal 15px/1.2em 'Roboto Slab', Arial, sans-serif;
+}
+
+a{
+	color:@color-accent;
+	&:hover{
+		color: lighten(@color-accent, 10);
+		text-decoration: none;
+	}
+}
+
+h4{
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: 300;
+}
+
+nav{
+	padding: 15px;
+	background: @color-main;
+
+	a{
+		color: @color-light;
+		font-weight: normal;
+		letter-spacing: 1px;
+		display: inline-block;
+		padding: 5px 10px 7px;
+		margin: 0 15px 0 0;
+
+		&.active{
+			background: @color-light;
+			color: @color-accent;
+			border-radius: 2px;
+			text-shadow: 0 1px 0px #000;
+		}
+
+		&:hover{
+			color:@color-accent;
+			text-decoration: none;
+		}
+	}
+}
+
+#container{
+	width: 60%;
+	margin: 0 auto;
+	min-width: 500px;
+	background: rgba(0,0,0,.7);
+	padding: 20px 40px 40px;
+	color: #fff;
+
+	h1.logo {
+		margin: 0 auto 25px;
+		display: block;
+		background: url(../images/logo.png) 0 0 no-repeat transparent;
+		width: 232px;
+		height: 208px;
+		overflow: hidden;
+		text-indent: -9999px;
+	}
+}
+
+
+#sports-form{
+	margin: 0 0 25px;
+	text-align: center;
+
+	label{
+		font-weight: 500;
+	}
+
+	.form-field{
+
+	}
+}
+
+.player-form{
+
+	label, input{
+		display:block;
+	}
+
+	.form-field{
+		margin: 0 0 25px;
+		
+		input[type=text] {
+			width: 100%;
+			padding: 10px;
+			border-radius: 0 0 2px 2px;
+			border: none;
+			color: #333;
+			font-weight: 500;
+
+			&:focus{
+				background: lighten(@color-accent, 35);
+				outline:none;
+			}
+		}
+
+		label {
+			font-weight: 300;
+			background: rgba(0,0,0,.5);
+			padding: 10px;
+			margin: 0;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			font-size: 12px;
+			border-radius: 2px 2px 0 0;
+
+			&.team-name{
+				background:@color-accent;
+			}
+		}
+	}
+
+	input.button{
+		padding: 10px;
+		background: @color-accent;
+		border-radius: 2px;
+		border: 0;
+		width: 100%;
+		box-shadow: 0 1px 2px 0 rgba(0,0,0,.8);
+
+		&:hover{
+			background: darken(@color-accent, 5);
+		}
+	}
+	
+}
+
+#team-link{
+	padding: 15px 35px;
+	border-radius: 2px;
+	text-align: center;
+	border: 1px solid @color-accent;
+}
+
+#team-results{
+	
+}

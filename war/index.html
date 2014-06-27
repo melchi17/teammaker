@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html ng-app="teamApp" ng-controller="init" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>TeamMAKER | Create your dream team!</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+	<!-- Latest compiled and minified CSS -->
+	<link href='http://fonts.googleapis.com/css?family=Oswald:700,400,300|Roboto+Slab:400,100,700,300' rel='stylesheet' type='text/css'>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet/less" type="text/css" href="css/styles.less" />
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+</head>
+<body style="background-image:url(images/stock/{{sportType!=''?sportType:''}}.jpg)">
+	<!--[if lt IE 7]>
+	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+
+	<!-- Add your site or application content here -->
+
+	<nav>
+		<a class="active" href="account.html">Account</a>
+		<a href="teams.html">My Teams</a>
+	</nav>
+
+	<div id="container">
+
+		<header>
+			<h1 class="logo">TeamMaker</h1>
+		</header>
+
+		<div id="form-container" ng-hide="showResults==true">
+
+			<div id="sports-form">
+				<div class="form-field">
+					<label for="sports-dropdown">Select your sport : </label>
+					<select name="sports-dropdown" id="sports-dropdown" ng-model="sportType" ng-init="sportType='basketball'">
+						<option selected="selected" value="basketball">Basketball</option>
+						<option value="baseball">Baseball</option>
+						<option value="soccer">Soccer</option>
+						<option value="hockey">Hockey</option>
+					</select>
+				</div>
+			</div>
+
+			<form ng-submit="submit()" ng-controller="Form">
+
+				<div class="player-form" ng-switch="sportType">
+
+					<div class="form-field">
+						<label for="name" class="team-name">Team name</label>
+						<input required type="text" name="name" class="team-name" ng-model="formData.name" />
+					</div>
+					<div class="form-field">
+						<label for="hc">Head coach</label>
+						<input required type="text" name="hc" class="player" ng-model="formData.hc" />
+					</div>
+
+					<!-- BASKETBALL -->
+					<div class="inner-form" ng-switch-when="basketball">
+						<input type="hidden" name="sport" value="basketball" ng-model="formData.sport" />
+						<div class="form-field">
+							<label for="pg">Point guard</label>
+							<input required type="text" name="pg" class="player" ng-model="formData.pg"
+								typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
+								typeahead-template-url="playerTypeahead.html"/>
+						</div>
+						<div class="form-field">
+							<label for="sg">Shooting guard</label>
+							<input required type="text" name="sg" class="player" ng-model="formData.sg" 
+								typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
+								typeahead-template-url="playerTypeahead.html"/>
+						</div>
+						<div class="form-field">
+							<label for="sf">Small forward</label>
+							<input required type="text" name="sf" class="player" ng-model="formData.sf" 
+								typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
+								typeahead-template-url="playerTypeahead.html"/>
+						</div>
+						<div class="form-field">
+							<label for="pf">Power forward</label>
+							<input required type="text" name="pf" class="player" ng-model="formData.pf" 
+								typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
+								typeahead-template-url="playerTypeahead.html"/>
+						</div>
+						<div class="form-field">
+							<label for="c">Center</label>
+							<input required type="text" name="c" class="player" ng-model="formData.c" 
+								typeahead="player.name for player in players | filter:$viewValue | limitTo:8" 
+								typeahead-template-url="playerTypeahead.html"/>
+						</div>
+					</div>
+
+					<!-- BASEBALL -->
+					<div class="inner-form" ng-switch-when="baseball">
+						<input type="hidden" name="sport" value="baseball" ng-model="formData.sport" />
+						<div class="form-field">
+							<label for="player-1">Pitcher</label>
+							<input required type="text" name="player-1" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-2">Catcher</label>
+							<input required type="text" name="player-2" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-3">First Base</label>
+							<input required type="text" name="player-3" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-4">Second Base</label>
+							<input required type="text" name="player-4" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-5">Third Base</label>
+							<input required type="text" name="player-5" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-6">Shortstop</label>
+							<input required type="text" name="player-6" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-7">Left field</label>
+							<input required type="text" name="player-7" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-8">Center field</label>
+							<input required type="text" name="player-8" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-9">Right field</label>
+							<input required type="text" name="player-9" class="player" />
+						</div>
+					</div>
+
+					<!-- SOCCER -->
+					<div class="inner-form" ng-switch-when="soccer">
+						<input type="hidden" name="sport" value="soccer" />
+						<div class="form-field">
+							<label for="player-1">Goalkeeper</label>
+							<input required type="text" name="player-1" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-2">Player 1</label>
+							<input required type="text" name="player-2" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-3">Player 2</label>
+							<input required type="text" name="player-3" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-4">Player 3</label>
+							<input required type="text" name="player-4" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-5">Player 4</label>
+							<input required type="text" name="player-5" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-6">Player 5</label>
+							<input required type="text" name="player-6" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-7">Player 6</label>
+							<input required type="text" name="player-7" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-8">Player 7</label>
+							<input required type="text" name="player-8" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-9">Player 8</label>
+							<input required type="text" name="player-9" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-10">Player 9</label>
+							<input required type="text" name="player-10" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-11">Player 10</label>
+							<input required type="text" name="player-11" class="player" />
+						</div>
+					</div>
+
+					<!-- HOCKEY -->
+					<div class="inner-form" ng-switch-when="hockey">
+						<input type="hidden" name="sport" value="hockey" />
+						<div class="form-field">
+							<label for="player-1">Goalie</label>
+							<input required type="text" name="player-1" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-2">Defenseman 1</label>
+							<input required type="text" name="player-2" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-3">Defenseman 2</label>
+							<input required type="text" name="player-3" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-4">Right wing</label>
+							<input required type="text" name="player-4" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-5">Left wing</label>
+							<input required type="text" name="player-5" class="player" />
+						</div>
+						<div class="form-field">
+							<label for="player-6">Center</label>
+							<input required type="text" name="player-6" class="player" />
+						</div>
+					</div>
+
+					<input type="submit" class="button" value="Submit">
+
+				</div>
+			</form>
+
+		</div>
+
+		<div id="team-results" ng-show="showResults==true">
+
+			<div class="team">
+			<h2>{{teamName}}</h2>
+				<p>Head coach: {{hc}}</p>
+				<p>Point guard: {{pg}}</p>
+				<p>Shooting guard: {{sg}}</p>
+				<p>Small forward: {{sf}}</p>
+				<p>Power forward: {{pf}}</p>
+				<p>Center: {{c}}</p>
+			</div>
+
+			<div id="team-link">
+				<h4>Share your team!</h4>
+				<h3><a href="{{yourPermalink}}">{{yourPermalink}}</a></h3>
+			</div>
+
+		</div>
+
+</div>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="js/less-1.7.3.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js"></script>
+<script src="js/scripts.js"></script>
+<script type="text/ng-template" id="playerTypeahead.html">
+<a><span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>, {{ match.model.position }} ({{ match.model.from }} - {{ match.model.to }})</a>
+</script>
+
+</body>
+</html>

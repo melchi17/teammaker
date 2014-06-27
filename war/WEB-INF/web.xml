@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+
+	<servlet>
+		<servlet-name>User</servlet-name>
+		<servlet-class>com.team.maker.servlet.UserServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Team</servlet-name>
+		<servlet-class>com.team.maker.servlet.TeamServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Permalink</servlet-name>
+		<servlet-class>com.team.maker.servlet.PermalinkServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>PlayerUpload</servlet-name>
+		<servlet-class>com.team.maker.servlet.PlayerUploadServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>InsertPlayerStatData</servlet-name>
+		<servlet-class>com.team.maker.servlet.InsertPlayerStatData</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InsertPlayerStatData</servlet-name>
+		<url-pattern>/admin/upload/stats</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Team</servlet-name>
+		<url-pattern>/api/team/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Permalink</servlet-name>
+		<url-pattern>/team/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PlayerUpload</servlet-name>
+		<url-pattern>/admin/upload/players</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+	<!-- <security-constraint> <web-resource-collection> <web-resource-name>profile</web-resource-name> 
+		<url-pattern>/api/*</url-pattern> </web-resource-collection> <auth-constraint> 
+		<role-name>*</role-name> </auth-constraint> </security-constraint> -->
+</web-app>
