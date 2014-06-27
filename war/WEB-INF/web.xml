@@ -10,6 +10,10 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-class>com.team.maker.servlet.UserServlet</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>UserTeam</servlet-name>
+		<servlet-class>com.team.maker.servlet.UserTeamServlet</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>Team</servlet-name>
 		<servlet-class>com.team.maker.servlet.TeamServlet</servlet-class>
 	</servlet>
@@ -30,6 +34,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<url-pattern>/admin/upload/stats</url-pattern>
 	</servlet-mapping>
 
+	<servlet-mapping>
+		<servlet-name>User</servlet-name>
+		<url-pattern>account</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UserTeam</servlet-name>
+		<url-pattern>teams</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>Team</servlet-name>
 		<url-pattern>/api/team/*</url-pattern>

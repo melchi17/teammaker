@@ -17,19 +17,18 @@ public class UserServlet extends HttpServlet
         UserService userService = UserServiceFactory.getUserService();
         
         
-        String thisURL = req.getRequestURI();
+//        String thisURL = req.getRequestURI();
 
         resp.setContentType("text/html");
         if (req.getUserPrincipal() != null) {
-            resp.getWriter().println("<p>Hello, " +
-                                     req.getUserPrincipal().getName() +
-                                     "!  You can <a href=\"" +
-                                     userService.createLogoutURL(thisURL) +
-                                     "\">sign out</a>.</p>");
+        	resp.sendRedirect("/account.jsp");
+//            resp.getWriter().println("<p>Hello, " +
+//                                     req.getUserPrincipal().getName() +
+//                                     "!  You can <a href=\"" +
+//                                     userService.createLogoutURL(thisURL) +
+//                                     "\">sign out</a>.</p>");
         } else {
-            resp.getWriter().println("<p>Please <a href=\"" +
-                                     userService.createLoginURL(thisURL) +
-                                     "\">sign in</a>.</p>");
+        	resp.sendRedirect(userService.createLoginURL(req.getRequestURI()));
         }
     }
 }
