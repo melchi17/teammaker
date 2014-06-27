@@ -40,18 +40,23 @@ teamApp.controller('Form', function ($scope, $http) {
 		$scope.$parent.showResults = true;
 		$scope.$parent.yourPermalink = location.origin+'/team/'+data.key.id;
 
-		$scope.$parent.teamName = data.properties.title;
-		$scope.$parent.pf = data.properties.pf;
-		$scope.$parent.pg = data.properties.pg;
-		$scope.$parent.c = data.properties.c;
-		$scope.$parent.sf = data.properties.sf;
-		$scope.$parent.hc = data.properties.hc;
-		$scope.$parent.sg = data.properties.sg;
+		$scope.$parent.teamName = data.propertyMap.name;
+		$scope.$parent.pf = data.propertyMap.pf;
+		$scope.$parent.pg = data.propertyMap.pg;
+		$scope.$parent.c = data.propertyMap.c;
+		$scope.$parent.sf = data.propertyMap.sf;
+		$scope.$parent.hc = data.propertyMap.hc;
+		$scope.$parent.sg = data.propertyMap.sg;
 	};
 	
 	$scope.players = [];
 	$http.get('js/players.json', {}).then(function (res) {
 		$scope.players = res.data.players;
+	});
+	
+	$scope.coaches = [];
+	$http.get('js/coaches.json', {}).then(function (res) {
+		$scope.coaches = res.data.coaches;
 	});
 });
 
@@ -67,13 +72,13 @@ teamApp.controller('init', function ($scope, $http) {
 			$scope.showResults = true;
 			$scope.yourPermalink = location.origin+'/team/'+data.key.id;
 			
-			$scope.teamName = data.properties.title;
-			$scope.pf = data.properties.pf;
-			$scope.pg = data.properties.pg;
-			$scope.c = data.properties.c;
-			$scope.sf = data.properties.sf;
-			$scope.hc = data.properties.hc;
-			$scope.sg = data.properties.sg;
+			$scope.teamName = data.propertyMap.name;
+			$scope.pf = data.propertyMap.pf;
+			$scope.pg = data.propertyMap.pg;
+			$scope.c = data.propertyMap.c;
+			$scope.sf = data.propertyMap.sf;
+			$scope.hc = data.propertyMap.hc;
+			$scope.sg = data.propertyMap.sg;
 		}).error(function( data, status, headers, config ){
 			var data = {
 				"key": {
@@ -102,13 +107,13 @@ teamApp.controller('init', function ($scope, $http) {
 			$scope.showResults = true;
 			$scope.yourPermalink = location.origin+'/team/'+data.key.id;
 
-			$scope.teamName = data.properties.title;
-			$scope.pf = data.properties.pf;
-			$scope.pg = data.properties.pg;
-			$scope.c = data.properties.c;
-			$scope.sf = data.properties.sf;
-			$scope.hc = data.properties.hc;
-			$scope.sg = data.properties.sg;
+			$scope.teamName = data.propertyMap.name;
+			$scope.pf = data.propertyMap.pf;
+			$scope.pg = data.propertyMap.pg;
+			$scope.c = data.propertyMap.c;
+			$scope.sf = data.propertyMap.sf;
+			$scope.hc = data.propertyMap.hc;
+			$scope.sg = data.propertyMap.sg;
 		})
 	}
 });

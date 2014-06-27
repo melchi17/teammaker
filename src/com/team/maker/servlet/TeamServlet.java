@@ -15,12 +15,15 @@ import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Transaction;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
 import com.team.maker.model.NBATeam;
 
 @SuppressWarnings("serial")
 public class TeamServlet extends HttpServlet
 {
+	private UserService userService = UserServiceFactory.getUserService();
 	private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 	private Gson gson = new Gson();
 	
@@ -38,6 +41,10 @@ public class TeamServlet extends HttpServlet
 		teamEntity.setProperty("pf", team.getPf());
 		teamEntity.setProperty("c", team.getC());
 		teamEntity.setProperty("hc", team.getHc());
+		
+		if (request.getUserPrincipal() != null && request.getUserPrincipal().getName() != null) {
+			teamEntity.setProperty("owner", userService.getCurrentUser().getEmail());
+		}
 		
 		Transaction tx = datastore.beginTransaction();
 		try {
