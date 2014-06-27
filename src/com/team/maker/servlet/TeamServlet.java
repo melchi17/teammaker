@@ -2,6 +2,7 @@ package com.team.maker.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,23 +14,31 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+<<<<<<< HEAD
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+=======
+import com.google.appengine.api.datastore.Transaction;
+>>>>>>> eddff1672fb6d75253f31bfe645d52ce2d7fdc67
 import com.google.gson.Gson;
 import com.team.maker.model.NBATeam;
 
 @SuppressWarnings("serial")
 public class TeamServlet extends HttpServlet
 {
+<<<<<<< HEAD
 	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 	UserService userService = UserServiceFactory.getUserService();
+=======
+	private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+>>>>>>> eddff1672fb6d75253f31bfe645d52ce2d7fdc67
 	private Gson gson = new Gson();
 	
 	/**
 	 * Creates a team
 	 */
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		NBATeam team = gson.fromJson(IoUtil.readStream(req.getInputStream()), NBATeam.class);
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		NBATeam team = gson.fromJson(IoUtil.readStream(request.getInputStream()), NBATeam.class);
 		
 		Entity teamEntity = new Entity("Team");
 		teamEntity.setProperty("name", team.getName());
@@ -43,10 +52,18 @@ public class TeamServlet extends HttpServlet
 			teamEntity.setProperty("owner", userService.getCurrentUser().getEmail());
 		}
 		
-		datastore.put(teamEntity);
+		Transaction tx = datastore.beginTransaction();
+		try {
+			datastore.put(teamEntity);
+			tx.commit();
+		}
+		catch (Exception ex) {
+			tx.rollback();
+			throw new ServletException(ex);
+		}
 		
-		resp.setContentType("application/json");
-		resp.getWriter().println(gson.toJson(teamEntity));
+		response.setContentType("application/json");
+		response.getWriter().println(gson.toJson(teamEntity));
 	}
 	
 	/**

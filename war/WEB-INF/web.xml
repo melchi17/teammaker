@@ -29,10 +29,11 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>InsertPlayerStatData</servlet-name>
 		<servlet-class>com.team.maker.servlet.InsertPlayerStatData</servlet-class>
 	</servlet>
-	<servlet-mapping>
-		<servlet-name>InsertPlayerStatData</servlet-name>
-		<url-pattern>/admin/upload/stats</url-pattern>
-	</servlet-mapping>
+	<servlet>
+		<servlet-name>PlayerStats</servlet-name>
+		<servlet-class>com.team.maker.servlet.PlayerStatServlet</servlet-class>
+	</servlet>
+	
 
 	<servlet-mapping>
 		<servlet-name>User</servlet-name>
@@ -53,6 +54,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	<servlet-mapping>
 		<servlet-name>PlayerUpload</servlet-name>
 		<url-pattern>/admin/upload/players</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>InsertPlayerStatData</servlet-name>
+		<url-pattern>/admin/upload/stats</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PlayerStats</servlet-name>
+		<url-pattern>/stats/*</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>

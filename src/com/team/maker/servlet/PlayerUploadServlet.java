@@ -22,7 +22,7 @@ import com.google.appengine.api.datastore.Entity;
 @SuppressWarnings("serial")
 public class PlayerUploadServlet extends HttpServlet
 {
-	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+	private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 	
 	/**
 	 * Admin page to upload a CSV of players
