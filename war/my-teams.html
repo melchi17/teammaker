@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html ng-app="teamApp" ng-controller="init" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>TeamMAKER | Create your dream team!</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+	<!-- Latest compiled and minified CSS -->
+	<link href='http://fonts.googleapis.com/css?family=Oswald:700,400,300|Roboto+Slab:400,100,700,300' rel='stylesheet' type='text/css'>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet/less" type="text/css" href="css/styles.less" />
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+</head>
+<body style="background-image:url(images/stock/{{sportType!=''?sportType:''}}.jpg)">
+	<!--[if lt IE 7]>
+	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+
+	<!-- Add your site or application content here -->
+
+	<nav>
+		<a class="active" href="/">Home</a>
+		<a href="account">Account</a>
+		<a href="teams">My Teams</a>
+	</nav>
+
+	<div id="container">
+
+		<header>
+			<h1 class="logo"><a href="/">TeamMaker</a></h1>
+		</header>
+
+		<div id="form-container" ng-hide="showResults==true">
+
+			<div id="sports-form">
+				<div class="form-field">
+					<label for="sports-dropdown">Select your sport : </label>
+					<select name="sports-dropdown" id="sports-dropdown" ng-model="sportType" ng-init="sportType='basketball'">
+						<option selected="selected" value="basketball">Basketball</option>
+						<option value="baseball">Baseball</option>
+						<option value="soccer">Soccer</option>
+						<option value="hockey">Hockey</option>
+					</select>
+				</div>
+			</div>
+
+			<div id="my-teams" class="panel panel-default">
+				<div class="panel-heading team-name">My Teams</div>
+				<div class="panel-body">
+					<table class="table table-striped"
+						<tbody>
+							<tr>
+								<td>Team Name One<td>
+								<td><button class="delete-btn">Delete</button><td>
+							</tr>
+							<tr>
+								<td>Team Name Two<td>
+								<td><button class="delete-btn">Delete</button><td>
+							</tr>
+							<tr>
+								<td>Team Name Three<td>
+								<td><button class="delete-btn">Delete</button><td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+</div>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="js/less-1.7.3.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js"></script>
+<script src="js/scripts.js"></script>
+<script type="text/ng-template" id="playerTypeahead.html">
+<a><span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>, {{ match.model.position }} ({{ match.model.from }} - {{ match.model.to }})</a>
+</script>
+
+</body>
+</html>
