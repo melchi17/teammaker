@@ -21,6 +21,8 @@ public class PlayerStatRepo {
 				
 				query.setFilter("playerId == playerIdParam");
 				query.declareParameters("Integer playerIdParam");
+				
+				@SuppressWarnings("unchecked")
 				List<PlayerStats> allPlayerStats = (List<PlayerStats>)query.execute(playerId);
 				if (allPlayerStats != null && allPlayerStats.size() > 0) {
 					playerStats = allPlayerStats.get(0);

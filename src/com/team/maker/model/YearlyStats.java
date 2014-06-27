@@ -10,6 +10,7 @@ import javax.jdo.annotations.PrimaryKey;
 
 import com.google.appengine.api.datastore.Key;
 
+@SuppressWarnings("serial")
 @PersistenceCapable
 public class YearlyStats implements Serializable
 {
