@@ -11,20 +11,21 @@ import com.google.gson.Gson;
 import com.team.maker.data.PlayerStatRepo;
 import com.team.maker.model.PlayerStats;
 
-public class PlayerStatServlet  extends HttpServlet
-{
-	
+public class PlayerStatServlet extends HttpServlet {
+
 	private final PlayerStatRepo playerStatRepo = new PlayerStatRepo();
 	private final Gson gson = new Gson();
-	
+
 	/**
 	 * Redirects to index.html for the permalink viewing
-	 * @throws ServletException 
+	 * 
+	 * @throws ServletException
 	 */
 	@Override
-    public void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException, ServletException {
+	public void doGet(HttpServletRequest req, HttpServletResponse response)
+			throws IOException, ServletException {
 		String playerIdParam = req.getParameter("playerId");
-		
+
 		PlayerStats playerStats = null;
 		try {
 			Integer playerId = Integer.parseInt(playerIdParam);
@@ -32,10 +33,15 @@ public class PlayerStatServlet  extends HttpServlet
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.sendError(400);
+			return;
 		}
-		
-		
+
+		if (playerStats == null) {
+			response.sendError(404);
+			return;
+		}
 		response.setContentType("application/json");
 		response.getWriter().println(gson.toJson(playerStats));
-    }
+
+	}
 }

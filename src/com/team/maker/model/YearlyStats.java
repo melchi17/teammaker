@@ -119,10 +119,9 @@ public class YearlyStats implements Serializable
 	private boolean dnp = false;
 	@Persistent
 	private String dnpReason;
+	 
+	public YearlyStats() {}
 	
-	public YearlyStats() {
-		
-	}
 	public String getYear() {
 		return year;
 	}
