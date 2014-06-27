@@ -26,12 +26,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-class>com.team.maker.servlet.PlayerUploadServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>InsertPlayerStatData</servlet-name>
+		<servlet-name>Worker</servlet-name>
 		<servlet-class>com.team.maker.servlet.InsertPlayerStatData</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>PlayerStats</servlet-name>
 		<servlet-class>com.team.maker.servlet.PlayerStatServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>StartPlayerStatInsertionJob</servlet-name>
+		<servlet-class>com.team.maker.servlet.StartPlayerStatInsertionJob</servlet-class>
 	</servlet>
 	
 
@@ -56,8 +60,12 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<url-pattern>/admin/upload/players</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>InsertPlayerStatData</servlet-name>
-		<url-pattern>/admin/upload/stats</url-pattern>
+		<servlet-name>Worker</servlet-name>
+		<url-pattern>/admin/worker</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>StartPlayerStatInsertionJob</servlet-name>
+		<url-pattern>/admin/insert-stats</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>PlayerStats</servlet-name>

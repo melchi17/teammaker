@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.team.maker.data.PlayerStatRepo;
 import com.team.maker.model.PlayerStats;
 
+@SuppressWarnings("serial")
 public class PlayerStatServlet extends HttpServlet {
 
 	private final PlayerStatRepo playerStatRepo = new PlayerStatRepo();
