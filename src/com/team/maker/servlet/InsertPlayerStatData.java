@@ -14,6 +14,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.lang3.SerializationUtils;
 
+import com.google.gson.Gson;
 import com.team.maker.data.PMF;
 import com.team.maker.model.PlayerStats;
 
@@ -53,11 +54,13 @@ public class InsertPlayerStatData extends HttpServlet {
 		String file = "/WEB-INF/playerStats.ser";
 		InputStream in = getServletContext().getResourceAsStream(file);
 		playerStats = SerializationUtils.deserialize(in);
+		Gson gson = new Gson();
 		if (playerStats != null) {
+	
 			PersistenceManager pm = PMF.get().getPersistenceManager();
 			try {
 				for (PlayerStats playerStats2 : playerStats) {
-
+					System.out.println(gson.toJson(playerStats2));
 					pm.makePersistent(playerStats2);
 
 				}

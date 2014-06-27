@@ -17,7 +17,7 @@ public class PlayerStats implements Serializable
 	@PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Key key;
-	
+	 
     @Persistent
 	private Integer playerId;
 	@Persistent
@@ -25,9 +25,7 @@ public class PlayerStats implements Serializable
 	@Persistent
 	private List<YearlyStats> yearlyStats = Collections.emptyList();
 	
-	public PlayerStats() {
-		
-	}
+	public PlayerStats() {}
 	
 	public Integer getPlayerId() {
 		return playerId;
